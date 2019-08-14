@@ -1,0 +1,21 @@
+{
+    "name"  : "jichangfeng/request-url",
+    "type"  : "library",
+    "description": "RequestUrl is a PHP HTTP client library",
+    "homepage": "http://github.com/jichangfeng/request-url",
+    "keywords": ["http", "rest", "curl", "client", "HTTP client"],
+    "license" : "MIT",
+    "authors": [
+        {
+            "name": "Changfeng Ji",
+            "email": "jichf@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3",
+        "ext-curl": "*"
+    },
+    "autoload": {
+        "psr-4": {"": "./src"}
+    }
+}
