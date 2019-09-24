@@ -311,7 +311,7 @@ class RequestUrl {
         $headers = preg_replace('/\n[ \t]/', ' ', $headers);
         $headers = explode("\n", $headers);
         array_shift($headers);
-        $return = [];
+        $return = array();
         foreach ($headers as $header) {
             if (!$header || strpos($header, ':') === false) {
                 continue;
