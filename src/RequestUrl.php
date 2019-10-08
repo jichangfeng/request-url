@@ -109,12 +109,20 @@ class RequestUrl {
     /**
      * 设置请求头
      * 
-     * @param array $headers 头信息，默认为空数组。
+     * @param array $headers 头信息，默认为空数组
      * @return self
      * @author Changfeng Ji <jichf@qq.com>
      */
     public function setHeaders($headers) {
-        $this->headers = $headers;
+        if (!is_array($headers)) {
+            return $this;
+        }
+        foreach ($headers as $key => $value) {
+            if (!is_numeric($key)) {
+                $headers[$key] = $key . ': ' . $value;
+            }
+        }
+        $this->headers = array_values($headers);
         return $this;
     }
 
