@@ -1,5 +1,9 @@
 # Request Url for PHP
 
+[![Latest Stable Version](https://poser.pugx.org/jichangfeng/request-url/v/stable.png)](https://packagist.org/packages/jichangfeng/request-url)
+[![Total Downloads](https://poser.pugx.org/jichangfeng/request-url/downloads.png)](https://packagist.org/packages/jichangfeng/request-url)
+[![License](https://poser.pugx.org/jichangfeng/request-url/license.png)](https://packagist.org/packages/jichangfeng/request-url)
+
 RequestUrl is a PHP HTTP client library.
 
 RequestUrl allows you to send **GET**, **POST**, **PUT**, **DELETE** HTTP requests.
