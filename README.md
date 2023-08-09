@@ -87,6 +87,7 @@ array (
   'contentType' => 'text/html; charset=UTF-8',
   'contentTypeDownload' => 1270.0,
   'sizeDownload' => 1270.0,
+  'elapsedTime' => 1.7826,
   'errno' => 0,
   'error' => '',
   'proxy' => false,

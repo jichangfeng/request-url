@@ -281,7 +281,10 @@ class RequestUrl {
             }
             curl_setopt($curl, constant('CURLOPT_' . $key), $value);
         }
+        $startTime = microtime(true);
         $response = curl_exec($curl);
+        $endTime = microtime(true);
+        $elapsedTime = round($endTime - $startTime, 4);
         $headerSize = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
         $header = false;
         $body = false;
@@ -295,6 +298,7 @@ class RequestUrl {
             'contentType' => curl_getinfo($curl, CURLINFO_CONTENT_TYPE),
             'contentTypeDownload' => curl_getinfo($curl, CURLINFO_CONTENT_LENGTH_DOWNLOAD),
             'sizeDownload' => curl_getinfo($curl, CURLINFO_SIZE_DOWNLOAD),
+            'elapsedTime' => $elapsedTime,
             'errno' => curl_errno($curl),
             'error' => curl_error($curl),
             'proxy' => $this->proxy ? true : false
