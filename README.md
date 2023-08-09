@@ -30,6 +30,14 @@ $result = RequestUrl::getInstance()
         ->setProxy('127.0.0.1', 1080)
         ->post('https://www.example.com/user/login');
 
+// Upload file request
+$result = RequestUrl::getInstance()
+        ->setTimeout(20)
+        ->setConnectTimeout(5)
+        ->setHeaders(array('Accept' => '*/*', 'Content-Type' => 'multipart/form-data'))
+        ->setParams(array('avatar' => new CURLFile('/tmp/avatar.png'), 'nickname' => 'coco'))
+        ->post('https://www.example.com/profile/upload');
+
 // Simple request
 $result = RequestUrl::getInstance()->setParams(array('key' => 'value'))->post('https://www.example.com');
 $result = RequestUrl::getInstance()->get('https://www.example.com');
