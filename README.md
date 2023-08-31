@@ -30,17 +30,34 @@ $result = RequestUrl::getInstance()
         ->setProxy('127.0.0.1', 1080)
         ->post('https://www.example.com/user/login');
 
-// Upload file request
-$result = RequestUrl::getInstance()
-        ->setTimeout(20)
-        ->setConnectTimeout(5)
-        ->setHeaders(array('Accept' => '*/*', 'Content-Type' => 'multipart/form-data'))
-        ->setParams(array('avatar' => new CURLFile('/tmp/avatar.png'), 'nickname' => 'coco'))
-        ->post('https://www.example.com/profile/upload');
-
 // Simple request
-$result = RequestUrl::getInstance()->setParams(array('key' => 'value'))->post('https://www.example.com');
 $result = RequestUrl::getInstance()->get('https://www.example.com');
+$result = RequestUrl::getInstance()->setParams(array('key' => 'value'))->post('https://www.example.com');
+
+// application/x-www-data-urlencoded
+//   application/x-www-form-urlencoded is the default form submission format.
+//   When using cURL to send a request, if the Content-Type is not set, this format will be used by default.
+$result = RequestUrl::getInstance()
+        ->setParams(array('key' => 'value'))
+        ->post('https://www.example.com');
+//   But if this header is set manually, cURL will send the request body as a plain text string instead of form-encoded.
+//   At this time, you must use the http_build_query() function to manually build form data.
+$result = RequestUrl::getInstance()
+        ->setHeaders(array('Content-Type' => 'application/x-www-data-urlencoded'))
+        ->setParams(http_build_query(array('key' => 'value')))
+        ->post('https://www.example.com');
+
+// multipart/form-data
+$result = RequestUrl::getInstance()
+        ->setHeaders(array('Content-Type' => 'multipart/form-data'))
+        ->setParams(array('avatar' => new CURLFile('/tmp/avatar.png'), 'nickname' => 'coco'))
+        ->post('https://www.example.com');
+
+// application/json
+$result = RequestUrl::getInstance()
+        ->setHeaders(array('Content-Type' => 'application/json'))
+        ->setParams(json_encode(array('key' => 'value')))
+        ->post('https://www.example.com');
 
 var_dump($result['body']);
 // string '[...]'... (length=1270)
